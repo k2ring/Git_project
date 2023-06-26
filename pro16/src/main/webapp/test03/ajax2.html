@@ -17,10 +17,7 @@
 							var title = $(this).find("title").text();
 							var writer = $(this).find("writer").text();
 							var image = $(this).find("image").text();
-							$("#bookInfo").append(
-									"<p>" + title + "</p>" + "<p>" + writer
-											+ "</p>"
-											+ "<img src="+image + "   />");
+							$("#bookInfo").append("<p>" + title + "</p>" + "<p>" + writer + "</p>" + "<img src="+image + " />");
 						});
 			},
 			error : function(data, textStatus) {
