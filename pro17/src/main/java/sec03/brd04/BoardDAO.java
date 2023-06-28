@@ -1,5 +1,7 @@
-package sec03.brd02;
+package sec03.brd04;
 
+
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,6 +12,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
 
 public class BoardDAO {
 	private DataSource dataFactory;
@@ -81,10 +84,10 @@ public class BoardDAO {
 		return 0;
 	}
 
-	public void insertNewArticle(ArticleVO article) {
+	public int insertNewArticle(ArticleVO article) {
+		int articleNO = getNewArticleNO();
 		try {
 			conn = dataFactory.getConnection();
-			int articleNO = getNewArticleNO();
 			int parentNO = article.getParentNO();
 			String title = article.getTitle();
 			String content = article.getContent();
@@ -106,6 +109,45 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return articleNO;
 	}
+	
+	public ArticleVO selectArticle(int articleNO){
+		ArticleVO article=new ArticleVO();
+		try{
+		conn = dataFactory.getConnection();
+		String query ="select articleNO,parentNO,title,content, imageFileName,id,writeDate"
+			                     +" from t_board" 
+			                     +" where articleNO=?";
+		System.out.println(query);
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, articleNO);
+		ResultSet rs =pstmt.executeQuery();
+		rs.next();
+		int _articleNO =rs.getInt("articleNO");
+		int parentNO=rs.getInt("parentNO");
+		String title = rs.getString("title");
+		String content =rs.getString("content");
+	    String imageFileName = rs.getString("imageFileName"); 
+		String id = rs.getString("id");
+		Date writeDate = rs.getDate("writeDate");
+
+		article.setArticleNO(_articleNO);
+		article.setParentNO (parentNO);
+		article.setTitle(title);
+		article.setContent(content);
+		article.setImageFileName(imageFileName);
+		article.setId(id);
+		article.setWriteDate(writeDate);
+		rs.close();
+		pstmt.close();
+		conn.close();
+		}catch(Exception e){
+		e.printStackTrace();	
+		}
+		return article;
+		}
+	
 
 }

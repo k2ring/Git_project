@@ -1,4 +1,4 @@
-package sec03.brd03;
+package sec03.brd06;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * Servlet implementation class BoardController
  */
-//@WebServlet("/board/*")
+/* @WebServlet("/board/*") */
 public class BoardController extends HttpServlet {
 	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
 	BoardService boardService;
@@ -43,8 +43,7 @@ public class BoardController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		doHandle(request, response);
 	}
 
@@ -67,16 +66,46 @@ public class BoardController extends HttpServlet {
 			if (action == null) {
 				articlesList = boardService.listArticles();
 				request.setAttribute("articlesList", articlesList);
-				nextPage = "/board02/listArticles.jsp";
+				nextPage = "/board05/listArticles.jsp";
 			} else if (action.equals("/listArticles.do")) {
 				articlesList = boardService.listArticles();
 				request.setAttribute("articlesList", articlesList);
-				nextPage = "/board02/listArticles.jsp";
+				nextPage = "/board05/listArticles.jsp";
 			} else if (action.equals("/articleForm.do")) {
-				nextPage = "/board02/articleForm.jsp";
+				nextPage = "/board05/articleForm.jsp";
 			} else if (action.equals("/addArticle.do")) {
-				int articleNO=0;
+				int articleNO = 0;
 				Map<String, String> articleMap = upload(request, response);
+				String title = articleMap.get("title");
+				String content = articleMap.get("content");
+				String imageFileName = articleMap.get("imageFileName");
+
+				articleVO.setParentNO(0);
+				articleVO.setId("hong");
+				articleVO.setTitle(title);
+				articleVO.setContent(content);
+				articleVO.setImageFileName(imageFileName);
+				articleNO = boardService.addArticle(articleVO);
+				if (imageFileName != null && imageFileName.length() != 0) {
+					File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
+					File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + articleNO);
+					destDir.mkdirs();
+					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				}
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + "  alert('������ �߰��߽��ϴ�.');" + " location.href='" + request.getContextPath()
+						+ "/board/listArticles.do';" + "</script>");
+
+				return;
+			} else if (action.equals("/viewArticle.do")) {
+				String articleNO = request.getParameter("articleNO");
+				articleVO = boardService.viewArticle(Integer.parseInt(articleNO));
+				request.setAttribute("article", articleVO);
+				nextPage = "/board05/viewArticle.jsp";
+			} else if (action.equals("/modArticle.do")) {
+				Map<String, String> articleMap = upload(request, response);
+				int articleNO = Integer.parseInt(articleMap.get("articleNO"));
+				articleVO.setArticleNO(articleNO);
 				String title = articleMap.get("title");
 				String content = articleMap.get("content");
 				String imageFileName = articleMap.get("imageFileName");
@@ -85,23 +114,38 @@ public class BoardController extends HttpServlet {
 				articleVO.setTitle(title);
 				articleVO.setContent(content);
 				articleVO.setImageFileName(imageFileName);
-				articleNO= boardService.addArticle(articleVO);
-				
-				if(imageFileName!=null && imageFileName.length()!=0) {
-				    File srcFile = new 	File(ARTICLE_IMAGE_REPO +"\\"+"temp"+"\\"+imageFileName);
-					File destDir = new File(ARTICLE_IMAGE_REPO +"\\"+articleNO);
+				boardService.modArticle(articleVO);
+				if (imageFileName != null && imageFileName.length() != 0) {
+					String originalFileName = articleMap.get("originalFileName");
+					File srcFile = new File(ARTICLE_IMAGE_REPO + "\\" + "temp" + "\\" + imageFileName);
+					File destDir = new File(ARTICLE_IMAGE_REPO + "\\" + articleNO);
 					destDir.mkdirs();
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+					;
+					File oldFile = new File(ARTICLE_IMAGE_REPO + "\\" + articleNO + "\\" + originalFileName);
+					oldFile.delete();
 				}
 				PrintWriter pw = response.getWriter();
-				pw.print("<script>" 
-				         +"  alert('������ �߰��߽��ϴ�.');" 
-						 +" location.href='"+request.getContextPath()+"/board/listArticles.do';"
-				         +"</script>");
-
+				pw.print("<script>" + "  alert('���� �����߽��ϴ�.');" + " location.href='" + request.getContextPath()
+						+ "/board/viewArticle.do?articleNO=" + articleNO + "';" + "</script>");
 				return;
+			} else if (action.equals("/removeArticle.do")) {
+				int articleNO = Integer.parseInt(request.getParameter("articleNO"));
+				List<Integer> articleNOList = boardService.removeArticle(articleNO);
+				for (int _articleNO : articleNOList) {
+					File imgDir = new File(ARTICLE_IMAGE_REPO + "\\" + _articleNO);
+					if (imgDir.exists()) {
+						FileUtils.deleteDirectory(imgDir);
+					}
+				}
+
+				PrintWriter pw = response.getWriter();
+				pw.print("<script>" + "  alert('���� �����߽��ϴ�.');" + " location.href='" + request.getContextPath()
+						+ "/board/listArticles.do';" + "</script>");
+				return;
+			
 			}else {
-				nextPage = "/board02/listArticles.jsp";
+				nextPage = "/board05/listArticles.jsp";
 			}
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
@@ -111,7 +155,8 @@ public class BoardController extends HttpServlet {
 		}
 	}
 
-	private Map<String, String> upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private Map<String, String> upload(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Map<String, String> articleMap = new HashMap<String, String>();
 		String encoding = "utf-8";
 		File currentDirPath = new File(ARTICLE_IMAGE_REPO);
