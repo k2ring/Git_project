@@ -24,17 +24,21 @@ public class JsonServlet1 extends HttpServlet {
 	}
 
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+
 		String jsonInfo = request.getParameter("jsonInfo");
+		System.out.println(jsonInfo);
+		
 		try {
 			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonInfo);
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(jsonInfo);
 			System.out.println("* 회원 정보*");
-			System.out.println(jsonObject.get("name"));
-			System.out.println(jsonObject.get("age"));
-			System.out.println(jsonObject.get("gender"));
-			System.out.println(jsonObject.get("nickname"));
+			System.out.println(jsonObj.get("name"));
+			System.out.println(jsonObj.get("age"));
+			System.out.println(jsonObj.get("gender"));
+			System.out.println(jsonObj.get("nickname"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
