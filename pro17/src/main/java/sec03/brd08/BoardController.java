@@ -46,9 +46,9 @@ public class BoardController extends HttpServlet {
 		String nextPage = "";
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		System.out.println("action:" + action);
 		HttpSession session;
 		String action = request.getPathInfo();
-		System.out.println("action:" + action);
 		try {
 			List<ArticleVO> articlesList = new ArrayList<ArticleVO>();
 			if (action==null){	
