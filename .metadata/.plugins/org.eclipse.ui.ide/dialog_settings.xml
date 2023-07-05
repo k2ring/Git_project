@@ -41,6 +41,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Git_project\pro22"/>
 			<item value="C:\Git_project"/>
 			<item value="D:\006895-master\pro21"/>
 			<item value="D:\ex\pro202"/>
