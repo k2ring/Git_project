@@ -18,8 +18,8 @@ public class MemberDAOImpl implements MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource); // 주어진 연결을 하는 데이터소스를 가지고 JDBC 템플릿 활용
-														// Construct a new jdbcTemplate, given a DataSource
-	}
+	}						// Construct a new JdbcTemplate, given a DataSource to obtain connections from.
+	
 
 	@Override
 	public List selectAllMembers() throws DataAccessException {
