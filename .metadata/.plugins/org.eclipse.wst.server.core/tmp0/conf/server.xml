@@ -62,15 +62,14 @@
     -->
     <Connector connectionTimeout="20000" maxParameterCount="1000" port="8090" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
-    
-<!--     <Connector executor="tomcatThreadPool"
+    <!--
+    <Connector executor="tomcatThreadPool"
                port="8090" protocol="HTTP/1.1"
-               maxThreads="400"
                connectionTimeout="20000"
                redirectPort="8443"
                maxParameterCount="1000"
-               /> -->
-    
+               />
+    -->
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443
          This connector uses the NIO implementation. The default
          SSLImplementation will depend on the presence of the APR/native
@@ -161,7 +160,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\pro17_1" path="/pro17_1" reloadable="true" source="org.eclipse.jst.jee.server:pro17_1"/></Host>
+      <Context docBase="D:\ckd.java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\ckd.java\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\pro22" path="/pro22" reloadable="true" source="org.eclipse.jst.jee.server:pro22"/></Host>
     </Engine>
   </Service>
 </Server>

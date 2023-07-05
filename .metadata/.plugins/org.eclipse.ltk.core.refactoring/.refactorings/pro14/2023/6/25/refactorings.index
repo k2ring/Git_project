@@ -1,11 +1,18 @@
-1687243465783	Delete element
-1687243517654	Delete element
-1687246980940	Copy file
-1687316900202	Copy file
-1687325631317	Rename resource 'memberForm.jsp'
-1687326401588	Rename resource 'NewFile.jsp'
-1687328895196	Copy file
-1687406214303	Copy compilation unit
-1687412926733	Copy compilation unit
-1687419833875	Copy files
-1687429958146	Copy compilation unit
+1687244405305	Move 'member1.jsp' to 'test01'
+1687244407357	Move 'memberForm.html' to 'test01'
+1687244434142	Delete element
+1687244453119	Delete element
+1687244465638	Delete element
+1687244467720	Delete element
+1687244474695	Delete element
+1687246988273	Copy file
+1687315294060	Delete element
+1687315777058	Rename resource 'member3.jsp'
+1687316144303	Rename resource 'member.jsp'
+1687318658358	Rename type 'ㅁㅇㅇㄱㄷㄴㄴ'
+1687325654039	Rename resource 'memberForm.jsp'
+1687402598866	파일 복사
+1687402608505	파일 복사
+1687406947558	'memberForm.html' 자원 이름 바꾸기
+1687412760265	여러 파일 복사
+1687412775089	여러 파일 복사
