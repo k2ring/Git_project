@@ -12,49 +12,58 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-@WebServlet("/json2")
+
+
+
+@WebServlet("/json")
 public class JsonServlet2 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
-
-	private void doHandle(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+	
+	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
-
+		
+		JSONObject jsonObj=new JSONObject();
+		
+		jsonObj.put("name", "박지성");
+		jsonObj.put("age", "25");
+		jsonObj.put("gender", "남자");
+		jsonObj.put("nickname", "날센돌이");		
+				
+		
+		JSONArray jsonArr =	new JSONArray();		
+		System.out.println(jsonObj);
+		
+		jsonArr.add(jsonObj);
+		
+		
+		JSONObject jsonObj2=new JSONObject();
+		System.out.println(jsonObj2);
+		jsonObj2.put("name", "김연아");
+		jsonObj2.put("age", "21");
+		jsonObj2.put("gender", "여자");
+		jsonObj2.put("nickname", "칼치");
+		jsonArr.add(jsonObj2);
+		
+		
 		JSONObject totalObject = new JSONObject();
-		JSONArray membersArray = new JSONArray();
-		JSONObject memberInfo = new JSONObject();
-
-		memberInfo.put("name", "박지성");
-		memberInfo.put("age", "25");
-		memberInfo.put("gender", "남자");
-		memberInfo.put("nickname", "날센돌이");
-        //  배열에 입력
-		membersArray.add(memberInfo);
-
-		memberInfo = new JSONObject();
-		memberInfo.put("name", "김연아");
-		memberInfo.put("age", "21");
-		memberInfo.put("gender", "여자");
-		memberInfo.put("nickname", "칼치");
-		membersArray.add(memberInfo);
-
-		totalObject.put("members", membersArray);
-
+		
+		
+		totalObject.put("member", jsonArr);
+		
+		//반드시 문자열 변환
 		String jsonInfo = totalObject.toJSONString();
 		System.out.print(jsonInfo);
 		writer.print(jsonInfo);
 	}
+	
 
 }

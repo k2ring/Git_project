@@ -1,50 +1,59 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <!DOCTYPE html>
+    <html>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>JSON 테스트</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	$(function() {
-		$("#checkJson")
-				.click(
-						function() {
-							var jsonStr = '{"members":[{
-									"name":"박지성","age":"25","gender":"남자","nickname":"날센돌이"
-								}' + ', {
-									"name":"손흥민","age":"30","gender":"남자","nickname":"탱크"
-									}] }';
-/* 							var jsonInfo = JSON.parse(jsonStr); */
-							let jsonObj = JSON.parse(jsonStr);
-							var output = "회원 정보<br>";
-							output += "=======<br>";
-/* 							for ( var i in jsonInfo.members) {
-								output += "이름: " + jsonInfo.members[i].name
-										+ "<br>";
-								output += "나이: " + jsonInfo.members[i].age
-										+ "<br>";
-								output += "성별: " + jsonInfo.members[i].gender
-										+ "<br>";
-								output += "별명: " + jsonInfo.members[i].nickname
-										+ "<br><br><br>";
-							} */
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
 
-							for (let item of jsonObj) {
-								output += "이름: " + item.name + "<br>";
-								output += "나이: " + item.age + "<br>";
-							}
-							$("#output").html(output);
-						});
-	});
-</script>
-</head>
-<body>
-	<a id="checkJson" style="cursor: pointer">출력</a>
-	<br>
-	<br>
-	<div id="output"></div>
-</body>
-</html>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+        <script>
+
+          
+
+            $(function () {
+                $('#checkJson').click(function () {
+                   let jsonStr = '[{"name" : "박지성" , "age" : 30 } ,{"name" : "손흥민" , "age" : 35 } ]'
+                   let jsonObj=JSON.parse(jsonStr);
+                     /* console.log(jsonObj); */ 
+                var output = "회원 정보<br>";
+	    		output += "=======<br>";
+                   
+                /*   for (let i in jsonObj){
+                	   /* console.log(jsonObj[i]); */
+                	   /* console.log(jsonObj[i].name, jsonObj[i].age); 
+                	   
+                	  output += "이름: " + jsonObj[i].name +"<br>";
+                	  output +=  "나이: " + jsonObj[i].age +"<br>";
+                   }  */
+                  
+                  
+                  for (let item of jsonObj){
+               	   /* console.log(jsonObj[i]); */
+               	   /* console.log(jsonObj[i].name, jsonObj[i].age); */
+               	   
+               	  output += "이름--: " + item.name +"<br>";
+               	  output +=  "나이--: " + item.age +"<br>";
+                  } 
+                     
+                   $("#output").html(output); 
+                 /*  $("#output").text(output);  텍스트 그대로 나옴*/
+                }); 
+            });
+
+          
+        </script>
+
+
+    </head>
+
+    <body>
+
+        <a id="checkJson" style="cursor: pointer"> 출력11</a>
+       
+
+        <div id="output"></div>
+    </body>
+
+    </html>

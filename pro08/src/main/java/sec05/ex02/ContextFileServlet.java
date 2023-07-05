@@ -13,38 +13,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 @WebServlet("/cfile")
 public class ContextFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext ctx = getServletContext();
-		// 웹컨텐츠의 루트는 webapp
-		InputStream is = ctx.getResourceAsStream("/WEB-INF/file/init.txt");	// 경로에 있는 파일 자원을 입력스트림으로 반환
+		ServletContext ctx=getServletContext();
+		//웹컨텐츠의 루트는 webapp
+		InputStream is= ctx.getResourceAsStream("/WEB-INF/file/init.txt");  // 경로에 있는 파일 자원을 입력스트림으로 반환
 		
-		// 파일 입출력시 버퍼리더라는 보조스트림 이용
-		BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
-		
-		String str = null;
-		while( (str = buffer.readLine()) != null ) {
+		// 파일 입출력시 입출력 성능 향상을 위해 버퍼드리더라는 보조스트림 이용
+		BufferedReader buffer=new BufferedReader(new InputStreamReader(is));
+		String str=null;
+//		str = buffer.readLine();
+		while( (str = buffer.readLine()) !=null ) {
 			
-			StringTokenizer token = new StringTokenizer(str,",");
+			StringTokenizer token =new StringTokenizer(str,",");
 //			System.out.println(token);
-			String member = token.nextToken();
+			String member=token.nextToken();
 			System.out.println(member);
-			String order = token.nextToken();
+			String order=token.nextToken();
 			System.out.println(order);
-			String good = token.nextToken();
+			String good=token.nextToken();
 			System.out.println(good);
-			
-//			System.out.println(token.nextToken());
-//			System.out.println(str);
 		}
 		
 		
-//		String str = buffer.readLine();
-//		System.out.println(str);
+	
+		
 	}
-
 
 }

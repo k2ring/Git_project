@@ -1,0 +1,14 @@
+package sec03.brd01;
+
+import java.util.List;
+
+public class BoardService {
+	
+	BoardDAO boardDAO;
+	
+	List<ArticleVO> listArticles(){
+		
+		return null;
+	};
+
+}

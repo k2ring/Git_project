@@ -9,20 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 //@WebServlet("/second")
 public class SecondServlet extends HttpServlet {
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String value1 = request.getParameter("akshgaouighaogh");
-		String value2 = request.getParameter("query");
+		
+		String value1=request.getParameter("sdksfkl");
+//		String value2=request.getParameter("sdkl");
+//		
 		
 		
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-//		out.print("<body>this is second page6</body>");
+		PrintWriter  out=response.getWriter();
+		out.print("<body>this is second page7");
 		
-		out.print("<body>" + value1 + " , " + value2 + "</body>");
+		out.print("<br>" +  value1+  "</body>");
+//		
+//		
+		
+		
 	}
 
 }

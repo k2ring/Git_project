@@ -1,5 +1,12 @@
 package com.spring.ex01;
 
 public interface PersonService {
-	public void sayHello();
+	
+	//상수
+	
+	//추상메서드
+	
+	public abstract void sayHello();
+	
+
 }

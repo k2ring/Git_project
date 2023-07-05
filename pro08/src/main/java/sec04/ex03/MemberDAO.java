@@ -15,10 +15,10 @@ import javax.sql.DataSource; // 실질적인 어떤 데이터인지를 연결하
 
 public class MemberDAO {
 	// 필
-	private static final String driver = "oracle.jdbc.driver.OracleDriver";
-	private static final String url = "jdbc:oracle:thin:@localhost:1521:orcl";   // jdbc:사용할 JDBC 드라이버(oracle, mysql):드라이버타입:@서버이름(ip):포트번호:DB서비스아이디(SID)
-	private static final String user = "scott";
-	private static final String pwd = "12341234";
+//	private static final String driver = "oracle.jdbc.driver.OracleDriver";
+//	private static final String url = "jdbc:oracle:thin:@localhost:1521:orcl";   // jdbc:사용할 JDBC 드라이버(oracle, mysql):드라이버타입:@서버이름(ip):포트번호:DB서비스아이디(SID)
+//	private static final String user = "scott";
+//	private static final String pwd = "12341234";
 
 	private Connection con;
 	private DataSource dataFactory;

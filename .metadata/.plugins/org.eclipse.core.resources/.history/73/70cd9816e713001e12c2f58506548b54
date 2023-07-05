@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script>
+        function fn1() {
+
+            $.ajax({
+
+                type:"get",
+                dataType : "text",
+                /* url: "http://localhost:8090/pro16/ajaxTest1", */
+                url: "/pro16/ajaxTest1",
+				/* data : {'name' : 'hong'} */
+            	data : {"arr" : ["mon","tue"]}
+
+
+
+            });
+
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <input type="button" onclick="fn1()" value="서버에 데이터 전송WERQ2">
+
+</body>
+
+</html>

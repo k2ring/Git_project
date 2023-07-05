@@ -17,9 +17,9 @@ public class SetServletContext extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		
-		ServletContext  ctx=getServletContext();
+		ServletContext  ctx=getServletContext(); //컨텍스트 범위에서 값을 저장함, 같은 컨텍스트내에서 값 공유할 수 있음 
 		
-		List list = new ArrayList();
+		List list=new ArrayList();
 		list.add("홍일동");
 		list.add("홍이동");
 		

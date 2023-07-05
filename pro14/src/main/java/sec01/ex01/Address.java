@@ -1,7 +1,7 @@
 package sec01.ex01;
 
 public class Address {
-
+	
 	private String city;
 	private String zipcode;
 	
@@ -18,5 +18,6 @@ public class Address {
 		this.zipcode = zipcode;
 	}
 	
-	
+
 }
+

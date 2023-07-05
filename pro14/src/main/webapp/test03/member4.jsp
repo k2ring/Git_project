@@ -1,16 +1,8 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.Choose"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
 
-<jsp:useBean id="map" class="java.util.HashMap"></jsp:useBean>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="id" value="hong" scope="page"></c:set>
-<c:set var="pwd" value="1234" scope="page"></c:set>
-<c:set var="name" value="${'홍길동'}" scope="page"></c:set>
-<c:set var="age" value="${22}" scope="page"></c:set>
-<c:set var="height" value="${177}" scope="page"></c:set>
 
 
 <!DOCTYPE html>
@@ -20,73 +12,103 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%-- 	<c:if test="true">
+		nice
+	</c:if>
 	
+	<hr>
+	<c:if test="false">
+		nicejskdl
+	</c:if>
+	 --%>
+	<%-- 	<c:if test="true">참</c:if> --%>
+	<%-- <c:otherwise>거짓</c:otherwise> --%>
+
+	<hr>
+
+	<%-- <c:choose>
+		<c:when test="false">참임</c:when>
+		<c:otherwise>거짓임</c:otherwise>
+	</c:choose> --%>
+
+
+
+
 	<c:forEach begin="1" end="10" var="i">
-		${i} <br>
+		${i}<br>
 	</c:forEach>
-		<hr>
-		
-		
+
+	<hr>
+
+
 	<c:forEach begin="1" end="10" var="i" step="2">
-		${i} <br>
+		${i}<br>
 	</c:forEach>
-		<hr>
-		
-		
-	<c:forEach begin="10" end="20" var="i" varStatus="asdf">
-		${i} : ${asdf.index} <br>
+
+	<hr>
+
+
+	<c:forEach begin="10" end="20" var="i" varStatus="dsfaf">
+		${i} : ${dsfaf.index} <br>
 	</c:forEach>
-		<hr>
-		
-		
-	<c:forEach begin="10" end="20" var="i" varStatus="asdf">
-		${i} : ${asdf.count} <br>
+
+
+	<hr>
+
+	<c:forEach begin="10" end="20" var="i" varStatus="dsfaf">
+		${i} : ${dsfaf.count} <br>
 	</c:forEach>
-		<hr>
-		
-		
-	<c:forEach begin="10" end="20" var="i" varStatus="asdf">
-		${i} : ${asdf.first} <br>
+
+
+	<hr>
+	<c:forEach begin="10" end="20" var="i" varStatus="dsfaf">
+		${i} : ${dsfaf.first} <br>
 	</c:forEach>
-		<hr>
-		
-		
-	<c:forEach begin="10" end="20" var="i" varStatus="asdf">
-		${i} : ${asdf.last} <br>
+
+
+
+
+	<hr>
+	<c:forEach begin="10" end="20" var="i" varStatus="dsfaf">
+		${i} : ${dsfaf.last} <br>
 	</c:forEach>
-		<hr>
-		
-		
+
+
+
+	<hr>
+
 	<c:set var="tot" value="0"></c:set>
-	
-	<c:forEach begin="1" end="10" var="i" varStatus="asdf">
-		${tot = tot + i} <br>
+
+	<c:forEach begin="1" end="10" var="i">
+		${ tot=tot+i}<br>
 	</c:forEach>
-		<hr>	
-		최종값 : ${tot}
-		<hr>	
-	 
+	<hr>
+	최종값 : ${tot}
+
+
+
+	<hr>
 	<c:forEach begin="2" end="9" var="i">
 		<c:forEach begin="1" end="9" var="j">
-			${i} * ${j} = ${i * j} &nbsp;&nbsp;&nbsp;&nbsp;
+		${i}*${j}=${i * j} &nbsp;&nbsp;&nbsp;&nbsp;
 		</c:forEach>
 		<br>
 	</c:forEach>
-		<hr>
+
+
 	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,49 @@
+package sec03.brd01;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class BoardDAO {
+	
+	
+	private Connection con;
+	private DataSource dataFactory;
+	private PreparedStatement pstmt;
+	
+	
+	
+	public BoardDAO() {
+		// JNDI방식의 연결로 MemberDAO 객체를 초기화
+
+				try {
+					Context ctx = new InitialContext(); // 컨텍스트 작업을 위한 객체
+					Context envContext = (Context) ctx.lookup("java:/comp/env"); // 오라클인지 mysql인지의 환경을 찾기위한 컨텍스트
+					dataFactory = (DataSource) envContext.lookup("jdbc/oracle");
+				} catch (NamingException e) {
+					System.out.println("톰캣의 context.xml에 정의되어 있는 이름부분에서 정확하지 않은 에러");
+//					e.printStackTrace();
+				}
+	}
+	
+
+	
+	List<ArticleVO> selectAllArticles(){
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

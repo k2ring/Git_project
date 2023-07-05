@@ -1,0 +1,46 @@
+package sec03.brd01;
+
+import java.util.List;
+
+public class BoardService {
+	
+	BoardDAO boardDAO;
+	
+	public BoardService() {
+		boardDAO = new BoardDAO();
+	}
+	
+	
+	List<ArticleVO> listArticles(){
+		List<ArticleVO>  articlesList= boardDAO.selectAllArticles();
+		return articlesList;
+	};
+	
+	
+	public int addArticle(ArticleVO article){
+		int articleNO=boardDAO.insertNewArticle(article);
+		return articleNO;
+	}
+	
+	
+	
+	public ArticleVO viewArticle(int articleNo){
+		ArticleVO article = null;
+		article=boardDAO.selectArticle(articleNo);
+		return article;
+	}
+	
+	
+	
+	
+	public void modArticle(ArticleVO article){
+		boardDAO.updateArticle(article);
+	}
+	
+	public void removeArticle(int articleNo){
+//		boardDAO.deleteArticle(articleNo);
+	}
+	
+	
+
+}
