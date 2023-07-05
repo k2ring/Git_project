@@ -17,15 +17,16 @@ import com.spring.member.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource); // 주어진 연결을 하는 데이터소스를 가지고 JDBC 템플릿 활용
+														// Construct a new jdbcTemplate, given a DataSource
 	}
 
 	@Override
 	public List selectAllMembers() throws DataAccessException {
 		String query = "select id,pwd,name,email,joinDate" + " from t_member " + " order by joinDate desc";
 		List membersList = new ArrayList();
-
-		membersList = this.jdbcTemplate.query(query, new RowMapper() {
+		// RowMapper 인터페이스란 결과셋의 각 행을 매핑시켜줌(mapping rows of a ResultSet)
+		membersList = this.jdbcTemplate.query(query, new RowMapper<>() {
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
 				MemberVO memberVO = new MemberVO();
 				memberVO.setId(rs.getString("id"));
@@ -46,10 +47,10 @@ public class MemberDAOImpl implements MemberDAO {
 		String name = memberVO.getName();
 		String email = memberVO.getEmail();
 		String query = "insert into t_member(id,pwd, name,email) values  ("
-		                 + "'" + id + "' ,"
-	 	                 + "'" + pwd + "' ,"
-		                 + "'" + name + "' ,"
-		                 + "'" + email + "') ";
+                + "'" + id + "' ,"
+                 + "'" + pwd + "' ,"
+                + "'" + name + "' ,"
+                + "'" + email + "') ";
 		System.out.println(query);
 		int result = jdbcTemplate.update(query);
 		System.out.println(result);
