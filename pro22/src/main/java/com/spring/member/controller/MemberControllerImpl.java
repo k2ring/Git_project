@@ -32,6 +32,13 @@ public class MemberControllerImpl extends MultiActionController implements Membe
 		String pwd = request.getParameter("pwd");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
+		System.out.println(id + "," + pwd + "," + name + "," + email);
+		MemberVO memberVO = new MemberVO(id, pwd, name, email);
+		memberService.addMember(memberVO);	// 회원 추가
+		
+		List<MemberVO> memberList = memberService.listMembers();
+		mav.addObject("memberList", )
+		
 	}
 	
 	

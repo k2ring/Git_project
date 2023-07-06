@@ -19,5 +19,5 @@ public class MemberServiceImpl implements MemberService {
 		membersList = memberDAO.selectAllMembers();
 		return membersList;
 	}
-
+		
 }
