@@ -22,6 +22,7 @@
       <td><b>이름</b></td>
       <td><b>이메일</b></td>
       <td><b>가입일</b></td>
+      <td><b>지울까?</b></td>
    </tr>
    
  <c:forEach var="member" items="${membersList}" >     
@@ -31,6 +32,8 @@
       <td>${member.name}</td>
       <td>${member.email}</td>
       <td>${member.joinDate}</td>
+      <%-- <td><a href="${contextPath}/member/delMember.do?id=${member.id}">삭제</a> --%>
+      <td><input type="button" value="삭제" onclick="location.href='${contextPath}/member/delMember.do?id=${member.id}'" /></td>
       
     </tr>
   </c:forEach>   

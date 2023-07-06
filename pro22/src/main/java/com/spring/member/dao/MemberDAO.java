@@ -6,9 +6,15 @@ import org.springframework.dao.DataAccessException;
 
 import com.spring.member.vo.MemberVO;
 
-
 public interface MemberDAO {
-	public List selectAllMembers() throws DataAccessException ;
-	public int addMember(MemberVO memberVO) throws DataAccessException ;
+	
+	public List<MemberVO> selectAllMembers() throws DataAccessException ;
 
+	
+	
+	public void addMember(MemberVO memberVO) throws DataAccessException ;
+	
+	
+	
+	public void delMember(String id) throws DataAccessException ;
 }
