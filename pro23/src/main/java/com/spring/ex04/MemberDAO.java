@@ -74,7 +74,7 @@ public class MemberDAO {
 		return result;
 	}   
 
-	
+//	adsf 
     public int deleteMember(String id) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
