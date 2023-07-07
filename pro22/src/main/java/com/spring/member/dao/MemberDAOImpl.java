@@ -15,10 +15,16 @@ public class MemberDAOImpl implements MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public void setDataSource(DataSource dataSource) {
+<<<<<<< HEAD
+		this.jdbcTemplate = new JdbcTemplate(dataSource); // 주어진 연결을 하는 데이터소스를 가지고 JDBC 템플릿 활용
+	}						// Construct a new JdbcTemplate, given a DataSource to obtain connections from.
+	
+=======
 		this.jdbcTemplate = new JdbcTemplate(dataSource); // 주어진 연결을 하는 데이터소스를 가지고 JDBC 템플릿 활용 //Construct a new
 															// JdbcTemplate, given a DataSource to obtain connections
 															// from.
 	}
+>>>>>>> 8e8e304cbfdd5405209333cc78efcd9e8989fe05
 
 	@Override
 	public List selectAllMembers() throws DataAccessException {

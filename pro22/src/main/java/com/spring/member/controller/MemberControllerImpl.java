@@ -71,6 +71,14 @@ public class MemberControllerImpl  extends MultiActionController  implements Mem
 		return mav;
 	}
 	
+	public void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("회원 추가 코드 동작");
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+	}
+	
 	
 	
 	
