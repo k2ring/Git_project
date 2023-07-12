@@ -13,5 +13,6 @@ public class Main3_2 {
 			B = sc.nextInt();
 			System.out.println(A + B);
 		}
+		sc.close();
 	}
 }
