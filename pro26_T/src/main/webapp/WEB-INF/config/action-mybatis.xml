@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- ${...} placeholders 만들어서 값을 넣어주도록 함 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/config/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- JDBC 드라이버 종류(오라클) 설정하는 클래스 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">		<property name="driverClass" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+
+
+<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>	
+	<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml"></property>
+</bean>
+
+
+
+
+ <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+ <constructor-arg index="0"  ref="sqlSessionFactory"></constructor-arg>
+ </bean>
+
+
+
+
+
+<!--  <bean id="memberDAO" class="com.spring.member.dao.MemberDAOImpl">
+ 	<property name="sqlSession" ref="sqlSession"></property>
+ </bean> -->
+
+
+
+
+<!--  transactionManager가  accountDAO 객체를 참조해야 함, JDBC와  트랜잭션을 위한 클래스,   PlatformTransactionManager implementation for a single JDBC DataSource-->
+<bean  id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<property name="dataSource" ref="dataSource" ></property>
+</bean>
+
+
+<!--  어노테이션기법의 트랜잭션매니저 사용 -->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+
+
+
+
+
+
+</beans>
